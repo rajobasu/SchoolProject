@@ -17,6 +17,8 @@ public class InputTaker {
 	private Validator[] validators;
 	private static BufferedReader br;
 
+	private static final int NO_DEFAULT_VAL = -1423525432;
+
 	static {
 		br = new BufferedReader(new InputStreamReader(System.in));
 	}
@@ -55,26 +57,48 @@ public class InputTaker {
 	 * 
 	 * 
 	 */
-	public int getInput(String inputMessage) throws NumberFormatException, IOException {
+	public int getInputInt(String inputMessage, int defValue) throws NumberFormatException, IOException {
 		boolean exit = true;
-		int n = 0;
+		int n = defValue;
 		do {
+			n = defValue;
 			exit = true;
 			System.out.print(inputMessage);
 			try {
-				n = Integer.parseInt(br.readLine().trim());
-			} catch (NumberFormatException e) {
-				
-			}
-			for (Validator vv : validators) {
-				if (!vv.isValid(n)) {
-					exit = false;
-					System.out.println(vv.getErrorMessage() + " " + n);
-					break;
+				String inp = br.readLine().trim();
+				if (!inp.isEmpty()) {
+					n = Integer.parseInt(inp);
+
+					for (Validator vv : validators) {
+						if (!vv.isValid(n)) {
+							exit = false;
+							System.out.println(vv.getErrorMessage());
+							break;
+						}
+					}
+				} else {
+					if (defValue == NO_DEFAULT_VAL) {
+						exit = false;
+					} else {
+						System.out.println("Info: Original value < " + n + " > reinstated.");
+					}
 				}
+
+			} catch (NumberFormatException e) {
+				System.out.println("Error: Only Integer values are accepted !");
+				exit = false;
 			}
 
 		} while (!exit);
 		return n;
+	}
+
+	public int getInputInt(String inputMessage) throws NumberFormatException, IOException {
+		return getInputInt(inputMessage, NO_DEFAULT_VAL);
+	}
+
+	public String getInputString(String message) throws IOException {
+		System.out.println(message);
+		return br.readLine();
 	}
 }

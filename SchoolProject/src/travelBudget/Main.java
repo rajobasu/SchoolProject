@@ -8,7 +8,6 @@ public class Main {
 	 * 
 	 * @param args
 	 * @throws IOException
-	 * @author rajobasu of CA School
 	 */
 	public static void main(String[] args) throws IOException {
 		System.out.println("Program started");

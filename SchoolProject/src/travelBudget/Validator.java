@@ -17,7 +17,7 @@ public abstract class Validator {
 	 * @return - The message to be shown.
 	 */
 	public String getErrorMessage() {
-		return "Invalid Input";
+		return "Error: Invalid Input";
 	}
 
 	/**

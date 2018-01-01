@@ -59,16 +59,36 @@ public class Report {
 	 * object at the time of creation ) at the time of invokation.
 	 */
 	public void showTabular() {
-		System.out.println("****************************************************");
-		String formatString = "%-32s  %10d  %10d         %7.3f%%\n";
-		System.out.printf("%-32s    Budgeted      Actual     Percentage Excess\n", "Head");
-		System.out.println("------------------------------------------------------------");
+		int totalBudget=0;
+		int totalActual=0;
+		System.out.println("");
+		// System.out.println("----------------------------------------------");
+		System.out.println("==============================================");
+		System.out.println(" Travel Budget System : Report");
+		System.out.println("==============================================");
+		System.out.println();
+		
+		
+		//System.out.printf("%-25s   %-8s \n", "Head", "  Amount");
+		//System.out.printf("%-25s   %-8s \n", "-------------------------", "--------");
+
+		//System.out.println("****************************************************");
+		String formatString = "%-25s  %8d  %8d  %7.1f%%\n";
+		System.out.printf("%-25s  Budgeted    Actual  Deviation\n", "Head");
+		System.out.println("-------------------------  --------  --------  --------- ");
 		for (int i = 0; i < Expense.getHeadCount(); i++) {
 			int val1 = budgetedExpense.getExpenseHead(i + 1).getAmount();
 			int val2 = actualExpense.getExpenseHead(i + 1).getAmount();
-
+			totalBudget+=val1;
+			totalActual+=val2;
 			System.out.printf(formatString, Expense.getHeadName(i), val1, val2, calculatePercentage(val1, val2));
 		}
+		System.out.println("-------------------------  --------  --------  ---------");
+		System.out.printf(formatString,"Total",totalBudget,totalActual,calculatePercentage(totalBudget,totalActual));
+		System.out.println("=========================  ========  ========  =========");
+		System.out.println();
+		
+		
 	}
 
 }

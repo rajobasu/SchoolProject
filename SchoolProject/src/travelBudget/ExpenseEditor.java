@@ -37,16 +37,18 @@ public class ExpenseEditor {
 			@Override
 			public String getErrorMessage() {
 				// TODO Auto-generated method stub
-				return "Give a more reasonable value! ";
+				return "Info: Enter value from 100 to 10000000";
 			}
 
 			@Override
 			public boolean isValid(int x) {
-				return x >= 1000 && x < 100000;
+				return x >= 100 && x < 10000000;
 			}
 		});
-		int amt = inputTaker.getInput(
-				budgetHead.getHeadName() + "   ( Old amount: " + budgetHead.getAmount() + " )   New amount: ");
+		int amt = inputTaker.getInputInt(
+				budgetHead.getHeadName() + "   ( Old amount: " + budgetHead.getAmount() + " )   New amount: ",
+				budgetHead.getAmount());
+
 		budgetHead.setAmount(amt);
 	}
 }

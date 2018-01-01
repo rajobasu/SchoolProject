@@ -3,14 +3,14 @@ package travelBudget;
 /**
  * This is a general purpose class that stores a set of {@code ExpenseHead}s.
  * 
- * @author rajobasu
+ * @author rajob
  *
  */
 public class Expense {
 	private ExpenseHead[] expenseHeads;
 	// public static final int HEAD_COUNT = ;
 
-	private static String[] headNames = { "Lodging", "Travel", "Food ", "Sightseeing", "Miscelleneous" };
+	private static String[] headNames = { "Lodging", "Travel", "Food ", "Sightseeing", "Miscelleneous" ,"1234567890123456789012345"};
 	private static int headCount;
 
 	static {
