@@ -53,7 +53,7 @@ public class BudgetInput {
 			}
 		});
 
-		int choice = inputTaker.getInput("Enter which value to update (<-1> to exit) :");
+		int choice = inputTaker.getInputInt("Enter which value to update (<-1> to exit) :");
 
 		if (choice == -1) {
 			return false;
