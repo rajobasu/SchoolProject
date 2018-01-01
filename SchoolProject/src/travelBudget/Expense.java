@@ -3,7 +3,7 @@ package travelBudget;
 /**
  * This is a general purpose class that stores a set of {@code ExpenseHead}s.
  * 
- * @author rajob
+ * @author rajobasu of SLS
  *
  */
 public class Expense {
