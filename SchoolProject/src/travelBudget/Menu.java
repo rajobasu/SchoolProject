@@ -41,9 +41,14 @@ public class Menu {
 	 */
 	public void showMenu() {
 		// System.out.println("\033[H\033[2J");
-		// System.out.flush();
-		System.out.println("\f");
-		System.out.println(" ********************************************* ");
+		System.out.flush();
+		System.out.println("");
+		// System.out.println("----------------------------------------------");
+		System.out.println("==============================================");
+		System.out.println(" Travel Budget System : Main Menu");
+		System.out.println("==============================================");
+		// System.out.println("********************************************* ");
+
 		System.out.println("Choose : ");
 		System.out.println("   1. Update Budgeted Expense");
 		System.out.println("   2. Update Actual Expense");
@@ -61,8 +66,20 @@ public class Menu {
 	 * @throws IOException
 	 */
 	public boolean executeChoice() throws IOException {
-		InputTaker inputTaker = new InputTaker();
-		int choice = inputTaker.getInput("Enter the choice : ");
+		InputTaker inputTaker = new InputTaker(new Validator() {
+			@Override
+			public boolean isValid(int x) {
+				return x > 0 && x < 5;
+			}
+
+			@Override
+			public String getErrorMessage() {
+				// TODO Auto-generated method stub
+				return super.getErrorMessage();
+			}
+			
+		});
+		int choice = inputTaker.getInputInt("Enter the choice : ");
 
 		switch (choice) {
 		case 1:
@@ -76,6 +93,7 @@ public class Menu {
 			break;
 		case 4:
 			return false;
+
 		}
 
 		return true;
@@ -88,7 +106,7 @@ public class Menu {
 	 * @throws IOException
 	 */
 	public void updateBudgetedExpense() throws IOException {
-		BudgetInput budgetInput = new BudgetInput(budgetedExpense);
+		BudgetUpdate budgetInput = new BudgetUpdate(budgetedExpense);
 		do {
 			budgetInput.showExpenseHeads();
 		} while (budgetInput.executeUserChoice());
@@ -101,7 +119,7 @@ public class Menu {
 	 * @throws IOException
 	 */
 	public void updateAccoutExpense() throws IOException {
-		BudgetInput budgetInput = new BudgetInput(actualExpense);
+		BudgetUpdate budgetInput = new BudgetUpdate(actualExpense);
 		do {
 			budgetInput.showExpenseHeads();
 		} while (budgetInput.executeUserChoice());
