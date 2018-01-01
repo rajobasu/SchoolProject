@@ -1,5 +1,15 @@
 package travelBudget;
 
+/*
+TODO:
+1. Head Adding
+2. Save to File
+3. Upload from File
+4. Add entry for Actuals
+
+
+*/
+
 import java.io.IOException;
 
 public class Main {

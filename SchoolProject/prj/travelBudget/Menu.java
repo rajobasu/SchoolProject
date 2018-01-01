@@ -10,8 +10,7 @@ import java.io.IOException;
  *
  */
 public class Menu {
-	private BudgetedExpense budgetedExpense;
-	private ActualExpense actualExpense;
+	private Expense expense;
 
 	// private TourDetails tourDetails;
 	/**
@@ -19,8 +18,7 @@ public class Menu {
 	 * the start may cause errors.
 	 */
 	public void init() {
-		budgetedExpense = new BudgetedExpense();
-		actualExpense = new ActualExpense();
+		expense = new Expense();
 	}
 
 	/**
@@ -53,7 +51,9 @@ public class Menu {
 		System.out.println("   1. Update Budgeted Expense");
 		System.out.println("   2. Update Actual Expense");
 		System.out.println("   3. Show Report");
-		System.out.println("   4. Exit");
+		System.out.println("   4. Add New Head");
+		System.out.println("   5. Remove Head");
+		System.out.println("   6. Exit");
 		System.out.println();
 	}
 
@@ -69,7 +69,7 @@ public class Menu {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override
 			public boolean isValid(int x) {
-				return x > 0 && x < 5;
+				return x > 0 && x < 7;
 			}
 
 			@Override
@@ -77,7 +77,7 @@ public class Menu {
 				// TODO Auto-generated method stub
 				return super.getErrorMessage();
 			}
-			
+
 		});
 		int choice = inputTaker.getInputInt("Enter the choice : ");
 
@@ -86,12 +86,28 @@ public class Menu {
 			updateBudgetedExpense();
 			break;
 		case 2:
-			updateAccoutExpense();
+			updateActualExpense();
 			break;
 		case 3:
 			showReport();
 			break;
 		case 4:
+			String headName = inputTaker.getInputString("Enter name of new head : ");
+			int initVal = new InputTaker().getInputInt("Enter initial amount : ", Expense.DEF_VAL);
+			expense.addNewHead(headName, initVal);
+			break;
+		case 5:
+			/*int index = new InputTaker(new Validator() {
+				@Override
+				public boolean isValid(int x) {
+					if (x == -1)
+						return true;
+					return x > 0 && x <= Expense.getHeadCount();
+				}
+			}).getInputInt("Enter head name to delete : ");*/
+			//xpense.removeHead(index - 1);
+			break;
+		case 6:
 			return false;
 
 		}
@@ -106,7 +122,7 @@ public class Menu {
 	 * @throws IOException
 	 */
 	public void updateBudgetedExpense() throws IOException {
-		BudgetUpdate budgetInput = new BudgetUpdate(budgetedExpense);
+		BudgetUpdate budgetInput = new BudgetUpdate(expense, ExpenseHead.TYPE_BUDGET_HEAD);
 		do {
 			budgetInput.showExpenseHeads();
 		} while (budgetInput.executeUserChoice());
@@ -118,8 +134,8 @@ public class Menu {
 	 * 
 	 * @throws IOException
 	 */
-	public void updateAccoutExpense() throws IOException {
-		BudgetUpdate budgetInput = new BudgetUpdate(actualExpense);
+	public void updateActualExpense() throws IOException {
+		BudgetUpdate budgetInput = new BudgetUpdate(expense, ExpenseHead.TYPE_ACTUAL_HEAD);
 		do {
 			budgetInput.showExpenseHeads();
 		} while (budgetInput.executeUserChoice());
@@ -131,6 +147,6 @@ public class Menu {
 	 */
 	public void showReport() {
 		// System.out.println("In Show report");
-		new Report(budgetedExpense, actualExpense).showTabular();
+		new Report(expense).showTabular();
 	}
 }
