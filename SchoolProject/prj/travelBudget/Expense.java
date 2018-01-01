@@ -81,8 +81,11 @@ public class Expense {
 
 	public void removeHead(String s) {
 		headNames.remove(s);
-		// expenseHeads.remove(index);
-
+		//expenseHeads.remove(index);
+	}
+	
+	public boolean hasTransactions(int i){
+		return false;
 	}
 
 	public static Expense getInstance() {
