@@ -9,8 +9,12 @@ package travelBudget;
  *
  */
 public class ExpenseHead {
+	public static final int TYPE_BUDGET_HEAD = -1423;
+	public static final int TYPE_ACTUAL_HEAD = -4654;
 	private String headName;
-	private int amount;
+
+	private ExpenseCategory budgetedAmount;
+	private ExpenseCategory actualAmount;
 
 	/**
 	 * Create a new {@code ExpenseHead} object from the {@code headName} and the
@@ -22,18 +26,19 @@ public class ExpenseHead {
 	 * @param amount
 	 *            - The amount spent under that head.
 	 */
-	public ExpenseHead(String headName, int amount) {
+	public ExpenseHead(String headName) {
 		super();
 		this.headName = headName;
-		this.amount = amount;
-	}
 
-	/**
-	 * The default constructor that sets the head name and amount to a default
-	 * value.
-	 */
-	public ExpenseHead() {
-		super();
+		budgetedAmount = new ExpenseCategory() {
+			@Override
+			public void updateAmount(int amount) {
+				clear();
+				super.updateAmount(amount);
+			}
+		};
+
+		actualAmount = new ExpenseCategory();
 	}
 
 	/**
@@ -44,7 +49,8 @@ public class ExpenseHead {
 	}
 
 	/**
-	 * @param headName the headName to set
+	 * @param headName
+	 *            the headName to set
 	 */
 	public void setHeadName(String headName) {
 		this.headName = headName;
@@ -53,15 +59,51 @@ public class ExpenseHead {
 	/**
 	 * @return the amount
 	 */
-	public int getAmount() {
-		return amount;
+	public int getBudgetedAmount() {
+		return budgetedAmount.getAmount();
+	}
+
+	public int getActualAmount() {
+		return actualAmount.getAmount();
 	}
 
 	/**
-	 * @param amount the amount to set
+	 * @param amount
+	 *            the amount to set
 	 */
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void updateBudgetedAmount(int amount) {
+		budgetedAmount.updateAmount(amount);
+	}
+
+	public void updateActualAmount(int amount) {
+		actualAmount.updateAmount(amount);
+	}
+
+	public int getAmount(int type) {
+		if (type == TYPE_BUDGET_HEAD)
+			return getBudgetedAmount();
+		else if (type == TYPE_ACTUAL_HEAD) {
+			return getActualAmount();
+		} else {
+			return -1;
+		}
+	}
+
+	public void updateAmount(int amount, int type) {
+		if (type == TYPE_ACTUAL_HEAD)
+			updateActualAmount(amount);
+		if (type == TYPE_BUDGET_HEAD)
+			updateBudgetedAmount(amount);
+
+		// System.out.println(type);
+	}
+
+	public ExpenseCategory getAmountType(int type) {
+		if (type == TYPE_ACTUAL_HEAD)
+			return actualAmount;
+		if (type == TYPE_BUDGET_HEAD)
+			return budgetedAmount;
+		return null;
 	}
 
 }

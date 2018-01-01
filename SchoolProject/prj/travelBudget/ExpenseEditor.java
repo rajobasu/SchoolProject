@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ExpenseEditor {
 
 	private ExpenseHead budgetHead;
+	private final int type;
 
 	/**
 	 * Create a {@code ExpenseEditor} object with the {@code ExpenseHead} object
@@ -21,8 +22,9 @@ public class ExpenseEditor {
 	 * @param budgetHead
 	 *            - The appropriate {@code ExpenseHead} object.
 	 */
-	public ExpenseEditor(ExpenseHead budgetHead) {
+	public ExpenseEditor(ExpenseHead budgetHead, int type) {
 		this.budgetHead = budgetHead;
+		this.type = type;
 	}
 
 	/**
@@ -46,9 +48,9 @@ public class ExpenseEditor {
 			}
 		});
 		int amt = inputTaker.getInputInt(
-				budgetHead.getHeadName() + "   ( Old amount: " + budgetHead.getAmount() + " )   New amount: ",
-				budgetHead.getAmount());
+				budgetHead.getHeadName() + "   ( Old amount: " + budgetHead.getAmount(type) + " )   New amount: ",
+				budgetHead.getAmount(type));
 
-		budgetHead.setAmount(amt);
+		budgetHead.updateAmount(amt, type);
 	}
 }

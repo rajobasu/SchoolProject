@@ -1,5 +1,7 @@
 package travelBudget;
 
+import java.util.ArrayList;
+
 /**
  * This is a general purpose class that stores a set of {@code ExpenseHead}s.
  * 
@@ -7,14 +9,19 @@ package travelBudget;
  *
  */
 public class Expense {
-	private ExpenseHead[] expenseHeads;
-	// public static final int HEAD_COUNT = ;
+	private static Expense INSTANCE;
 
-	private static String[] headNames = { "Lodging", "Travel", "Food ", "Sightseeing", "Miscelleneous" ,"1234567890123456789012345"};
-	private static int headCount;
+	public static final int DEF_VAL = 1000;
+	private ArrayList<ExpenseHead> expenseHeads;
+	private static ArrayList<String> headNames;
 
 	static {
-		headCount = headNames.length;
+		headNames = new ArrayList<>();
+		headNames.add("Lodging");
+		headNames.add("Travel");
+		headNames.add("Food");
+		headNames.add("Sightseeing");
+		headNames.add("Miscelleneous");
 	}
 
 	/**
@@ -22,10 +29,10 @@ public class Expense {
 	 * all the heads, along with a default value for them.
 	 */
 	public Expense() {
-		expenseHeads = new ExpenseHead[headCount];
+		expenseHeads = new ArrayList<>();
 
-		for (int i = 0; i < headCount; i++) {
-			expenseHeads[i] = new ExpenseHead(headNames[i], 1000);
+		for (String name : headNames) {
+			expenseHeads.add(new ExpenseHead(name));
 		}
 	}
 
@@ -34,7 +41,7 @@ public class Expense {
 	 * @return - The number of heads in the expenditure plan.
 	 */
 	public static int getHeadCount() {
-		return headCount;
+		return headNames.size();
 	}
 
 	/**
@@ -44,14 +51,14 @@ public class Expense {
 	 * @return The {@code ExpenseHead} asked for.
 	 */
 	public ExpenseHead getExpenseHead(int choice) {
-		return expenseHeads[choice - 1];
+		return expenseHeads.get(choice - 1);
 	}
 
 	/**
 	 * 
 	 * @return - A array of all the {@code ExpenseHead}s.
 	 */
-	public ExpenseHead[] getExpenseHeads() {
+	public ArrayList<ExpenseHead> getExpenseHeads() {
 		return expenseHeads;
 	}
 
@@ -62,6 +69,26 @@ public class Expense {
 	 * @return - The corresponding headname of the given index.
 	 */
 	public static String getHeadName(int choice) {
-		return headNames[choice];
+		return headNames.get(choice);
+	}
+
+	public void addNewHead(String s, int value) {
+		headNames.add(s);
+		ExpenseHead eh;
+		expenseHeads.add(eh = new ExpenseHead(s));
+		eh.updateBudgetedAmount(value);
+	}
+
+	public void removeHead(String s) {
+		headNames.remove(s);
+		// expenseHeads.remove(index);
+
+	}
+
+	public static Expense getInstance() {
+		if (INSTANCE == null)
+			INSTANCE = new Expense();
+
+		return INSTANCE;
 	}
 }

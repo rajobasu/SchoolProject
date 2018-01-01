@@ -12,8 +12,7 @@ package travelBudget;
  *
  */
 public class Report {
-	private BudgetedExpense budgetedExpense;
-	private ActualExpense actualExpense;
+	private Expense expense;
 
 	/**
 	 * Create a new {@code Report} object from the budgeted and actual expenses
@@ -26,10 +25,8 @@ public class Report {
 	 *            - A reference of the {@code ActualExpense} that stores the
 	 *            actual expenses incurred.
 	 */
-	public Report(BudgetedExpense budgetedExpense, ActualExpense actualExpense) {
-		super();
-		this.budgetedExpense = budgetedExpense;
-		this.actualExpense = actualExpense;
+	public Report(Expense expense) {
+		this.expense = expense;
 	}
 
 	/**
@@ -59,36 +56,37 @@ public class Report {
 	 * object at the time of creation ) at the time of invokation.
 	 */
 	public void showTabular() {
-		int totalBudget=0;
-		int totalActual=0;
+		int totalBudget = 0;
+		int totalActual = 0;
 		System.out.println("");
 		// System.out.println("----------------------------------------------");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Report");
 		System.out.println("==============================================");
 		System.out.println();
-		
-		
-		//System.out.printf("%-25s   %-8s \n", "Head", "  Amount");
-		//System.out.printf("%-25s   %-8s \n", "-------------------------", "--------");
 
-		//System.out.println("****************************************************");
+		// System.out.printf("%-25s %-8s \n", "Head", " Amount");
+		// System.out.printf("%-25s %-8s \n", "-------------------------",
+		// "--------");
+
+		// System.out.println("****************************************************");
 		String formatString = "%-25s  %8d  %8d  %7.1f%%\n";
 		System.out.printf("%-25s  Budgeted    Actual  Deviation\n", "Head");
 		System.out.println("-------------------------  --------  --------  --------- ");
-		for (int i = 0; i < Expense.getHeadCount(); i++) {
-			int val1 = budgetedExpense.getExpenseHead(i + 1).getAmount();
-			int val2 = actualExpense.getExpenseHead(i + 1).getAmount();
-			totalBudget+=val1;
-			totalActual+=val2;
-			System.out.printf(formatString, Expense.getHeadName(i), val1, val2, calculatePercentage(val1, val2));
+		for (ExpenseHead head : expense.getExpenseHeads()) {
+			int val1 = head.getBudgetedAmount();
+			int val2 = head.getActualAmount();
+			String name = head.getHeadName();
+			totalBudget += val1;
+			totalActual += val2;
+			System.out.printf(formatString, name, val1, val2, calculatePercentage(val1, val2));
 		}
 		System.out.println("-------------------------  --------  --------  ---------");
-		System.out.printf(formatString,"Total",totalBudget,totalActual,calculatePercentage(totalBudget,totalActual));
+		System.out.printf(formatString, "Total", totalBudget, totalActual,
+				calculatePercentage(totalBudget, totalActual));
 		System.out.println("=========================  ========  ========  =========");
 		System.out.println();
-		
-		
+
 	}
 
 }

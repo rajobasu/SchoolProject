@@ -11,36 +11,38 @@ import java.io.IOException;
  */
 public class BudgetUpdate {
 	private Expense expense;
+	private int type;
+
 	/**
 	 * 
 	 * @param expense
 	 */
-	public BudgetUpdate(Expense expense) {
+	public BudgetUpdate(Expense expense, int type) {
 		super();
 		this.expense = expense;
+		this.type = type;
 	}
 
 	public void showExpenseHeads() {
-		//System.out.println("\f");
-		//System.out.println("*******************************************************");
+		// System.out.println("\f");
+		// System.out.println("*******************************************************");
 		System.out.println("");
 		// System.out.println("----------------------------------------------");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Update Budget");
 		System.out.println("==============================================");
 		// System.out.println("********************************************* ");
-		
-		
+
 		System.out.printf("%-25s   %-8s \n", "Head", "  Amount");
 		System.out.printf("%-25s   %-8s \n", "-------------------------", "--------");
 		int i = 0;
-		int totalAmt=0;
+		int totalAmt = 0;
 		for (ExpenseHead head : expense.getExpenseHeads()) {
-			System.out.printf(++i + " %-25s %8d \n", head.getHeadName(), head.getAmount());
-			totalAmt+= head.getAmount();
+			System.out.printf(++i + " %-25s %8d \n", head.getHeadName(), head.getAmount(type));
+			totalAmt += head.getAmount(type);
 		}
 		System.out.println();
-		System.out.printf( "%-25s   %8d \n", "Total Amount", totalAmt);
+		System.out.printf("%-25s   %8d \n", "Total Amount", totalAmt);
 		System.out.println();
 
 	}
@@ -71,7 +73,7 @@ public class BudgetUpdate {
 		if (choice == -1) {
 			return false;
 		} else {
-			ExpenseEditor ed = new ExpenseEditor(expense.getExpenseHead(choice));
+			ExpenseEditor ed = new ExpenseEditor(expense.getExpenseHead(choice), type);
 			ed.updateValue();
 		}
 		return true;
