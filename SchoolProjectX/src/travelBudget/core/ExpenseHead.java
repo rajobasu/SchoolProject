@@ -1,4 +1,4 @@
-package travelBudget;
+package travelBudget.core;
 
 /**
  * This object encapsulates the basic block of a budget system -- A Expense

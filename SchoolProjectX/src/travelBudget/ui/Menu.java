@@ -1,6 +1,9 @@
-package travelBudget;
+package travelBudget.ui;
 
 import java.io.IOException;
+
+import travelBudget.core.Expense;
+import travelBudget.core.ExpenseHead;
 
 /**
  * This class keeps the progam running and process the choices given by the
@@ -122,10 +125,10 @@ public class Menu {
 	 * @throws IOException
 	 */
 	public void updateBudgetedExpense() throws IOException {
-		BudgetUpdate budgetInput = new BudgetUpdate(expense, ExpenseHead.TYPE_BUDGET_HEAD);
+		BudgetUpdate budgetUpdate = new BudgetUpdate(expense, ExpenseHead.TYPE_BUDGET_HEAD);
 		do {
-			budgetInput.showExpenseHeads();
-		} while (budgetInput.executeUserChoice());
+			budgetUpdate.showExpenseHeads();
+		} while (budgetUpdate.executeUserChoice());
 	}
 
 	/**

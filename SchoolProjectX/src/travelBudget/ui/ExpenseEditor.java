@@ -1,6 +1,8 @@
-package travelBudget;
+package travelBudget.ui;
 
 import java.io.IOException;
+
+import travelBudget.core.ExpenseHead;
 
 /**
  * This class Edits the expense of a particular {@code ExpenseHead}.

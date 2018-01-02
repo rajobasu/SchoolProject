@@ -1,4 +1,7 @@
-package travelBudget;
+package travelBudget.ui;
+
+import travelBudget.core.Expense;
+import travelBudget.core.ExpenseHead;
 
 /**
  * This class is used to print a report of the budget that the user has made and

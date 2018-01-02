@@ -1,4 +1,4 @@
-package travelBudget;
+package travelBudget.core;
 
 public class TourDetails {
 	private String tourName;

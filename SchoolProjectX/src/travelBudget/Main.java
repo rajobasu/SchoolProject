@@ -12,6 +12,8 @@ TODO:
 
 import java.io.IOException;
 
+import travelBudget.ui.Menu;
+
 public class Main {
 	/**
 	 * The starting point of execution.

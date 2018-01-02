@@ -1,4 +1,4 @@
-package travelBudget;
+package travelBudget.ui;
 
 /**
  * This is a class that is used to validate a input from the user, but can be

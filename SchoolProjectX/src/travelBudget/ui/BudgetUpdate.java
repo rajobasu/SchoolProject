@@ -1,6 +1,9 @@
-package travelBudget;
+package travelBudget.ui;
 
 import java.io.IOException;
+
+import travelBudget.core.Expense;
+import travelBudget.core.ExpenseHead;
 
 /**
  * Handles a budget update operation. It changes the {@code Expense} that is

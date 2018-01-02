@@ -1,4 +1,4 @@
-package travelBudget;
+package travelBudget.core;
 
 import java.util.ArrayList;
 
