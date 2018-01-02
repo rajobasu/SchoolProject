@@ -14,6 +14,7 @@ import travelBudget.core.ExpenseHead;
  */
 public class Menu {
 	private Expense expense;
+	public final int MENU_EXIT =9;
 
 	// private TourDetails tourDetails;
 	/**
@@ -54,9 +55,10 @@ public class Menu {
 		System.out.println("   1. Update Budgeted Expense");
 		System.out.println("   2. Update Actual Expense");
 		System.out.println("   3. Show Report");
-		System.out.println("   4. Add New Head");
-		System.out.println("   5. Remove Head");
-		System.out.println("   6. Exit");
+		System.out.println("   4. Show Actual Expenses");
+		System.out.println("   5. Add New Head");
+		System.out.println("   6. Remove Head");
+		System.out.println("   9. Exit");
 		System.out.println();
 	}
 
@@ -72,7 +74,7 @@ public class Menu {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override
 			public boolean isValid(int x) {
-				return x > 0 && x < 7;
+				return x > 0 && x < (MENU_EXIT+1);
 			}
 
 			@Override
@@ -94,12 +96,14 @@ public class Menu {
 		case 3:
 			showReport();
 			break;
+
 		case 4:
-			String headName = inputTaker.getInputString("Enter name of new head : ");
-			int initVal = new InputTaker().getInputInt("Enter initial amount : ", Expense.DEF_VAL);
-			expense.addNewHead(headName, initVal);
+			showActualExpensesDetail();
 			break;
 		case 5:
+			addNewExpenseHead();
+			break;
+		case 6:
 			/*int index = new InputTaker(new Validator() {
 				@Override
 				public boolean isValid(int x) {
@@ -110,7 +114,7 @@ public class Menu {
 			}).getInputInt("Enter head name to delete : ");*/
 			//xpense.removeHead(index - 1);
 			break;
-		case 6:
+		case MENU_EXIT:
 			return false;
 
 		}
@@ -118,6 +122,16 @@ public class Menu {
 		return true;
 	}
 
+	
+	public void addNewExpenseHead() throws IOException
+	{
+		InputTaker inputTaker = new InputTaker();
+
+		String headName = inputTaker.getInputString("Enter name of new head : ");
+		int initVal = new InputTaker().getInputInt("Enter initial amount : ", Expense.DEF_VAL);
+		expense.addNewHead(headName, initVal);
+		
+	}
 	/**
 	 * Update the budgeted expense in a manner that the user wants. Includes
 	 * prompting, taking input, and updating the actual value.
@@ -152,4 +166,11 @@ public class Menu {
 		// System.out.println("In Show report");
 		new Report(expense).showTabular();
 	}
+
+	public void showActualExpensesDetail()
+	{
+		new Report(expense).showActualExpensesDetail();
+		
+	}
+
 }

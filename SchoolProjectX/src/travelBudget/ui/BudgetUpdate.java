@@ -26,15 +26,30 @@ public class BudgetUpdate {
 		this.type = type;
 	}
 
+	protected void printHeading() {
+		if (type == ExpenseHead.TYPE_BUDGET_HEAD) {
+			// System.out.println("\f");
+			// System.out.println("*******************************************************");
+			System.out.println("");
+			// System.out.println("----------------------------------------------");
+			System.out.println("==============================================");
+			System.out.println(" Travel Budget System : Update Budget");
+			System.out.println("==============================================");
+			// System.out.println("*********************************************
+			// ");
+		}
+		if (type == ExpenseHead.TYPE_ACTUAL_HEAD) {
+			System.out.println("");
+			System.out.println("==============================================");
+			System.out.println(" Travel Budget System : Update Actual");
+			System.out.println("==============================================");
+		}
+
+
+	}
+
 	public void showExpenseHeads() {
-		// System.out.println("\f");
-		// System.out.println("*******************************************************");
-		System.out.println("");
-		// System.out.println("----------------------------------------------");
-		System.out.println("==============================================");
-		System.out.println(" Travel Budget System : Update Budget");
-		System.out.println("==============================================");
-		// System.out.println("********************************************* ");
+		printHeading();
 
 		System.out.printf("%-25s   %-8s \n", "Head", "  Amount");
 		System.out.printf("%-25s   %-8s \n", "-------------------------", "--------");

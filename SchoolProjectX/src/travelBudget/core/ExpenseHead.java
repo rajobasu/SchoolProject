@@ -1,5 +1,7 @@
 package travelBudget.core;
 
+import java.util.LinkedList;
+
 /**
  * This object encapsulates the basic block of a budget system -- A Expense
  * Head. It stores primarily 2 informations, the head name and the expenditure
@@ -75,8 +77,8 @@ public class ExpenseHead {
 		budgetedAmount.updateAmount(amount);
 	}
 
-	public void updateActualAmount(int amount) {
-		actualAmount.updateAmount(amount);
+	public void updateActualAmount(int amount, String details) {
+		actualAmount.updateAmount(amount, details);
 	}
 
 	public int getAmount(int type) {
@@ -91,7 +93,16 @@ public class ExpenseHead {
 
 	public void updateAmount(int amount, int type) {
 		if (type == TYPE_ACTUAL_HEAD)
-			updateActualAmount(amount);
+			updateActualAmount(amount, "");
+		if (type == TYPE_BUDGET_HEAD)
+			updateBudgetedAmount(amount);
+
+		// System.out.println(type);
+	}
+
+	public void updateAmount(int amount, String details, int type) {
+		if (type == TYPE_ACTUAL_HEAD)
+			updateActualAmount(amount, details);
 		if (type == TYPE_BUDGET_HEAD)
 			updateBudgetedAmount(amount);
 
@@ -104,6 +115,10 @@ public class ExpenseHead {
 		if (type == TYPE_BUDGET_HEAD)
 			return budgetedAmount;
 		return null;
+	}
+
+	public LinkedList<Transaction> getActualTransactions() {
+		return actualAmount.getAllTransactions();
 	}
 
 }

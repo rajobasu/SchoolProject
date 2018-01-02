@@ -2,6 +2,7 @@ package travelBudget.ui;
 
 import travelBudget.core.Expense;
 import travelBudget.core.ExpenseHead;
+import travelBudget.core.Transaction;
 
 /**
  * This class is used to print a report of the budget that the user has made and
@@ -92,4 +93,41 @@ public class Report {
 
 	}
 
+	public void showActualExpensesDetail() {
+		int totalBudget = 0;
+		int totalActual = 0;
+		System.out.println("");
+		// System.out.println("----------------------------------------------");
+		System.out.println("==============================================");
+		System.out.println(" Travel Budget System : Actual Expense Report");
+		System.out.println("==============================================");
+		System.out.println();
+
+		// System.out.printf("%-25s %-8s \n", "Head", " Amount");
+		// System.out.printf("%-25s %-8s \n", "-------------------------",
+		// "--------");
+
+		// System.out.println("****************************************************");
+		String formatString = "%-25s  %8d  %-50s\n";
+		System.out.printf("%-25s  Actual Exp  Details \n", "Head");
+		System.out.println("-------------------------  --------  --------  --------- ");
+		for (ExpenseHead head : expense.getExpenseHeads()) {
+			 int val1 = head.getBudgetedAmount();
+			int val2 = head.getActualAmount();
+			String name = head.getHeadName();
+			
+			for (Transaction tt : head.getActualTransactions()) {
+				System.out.println("                  "+tt.getAmount() + " : " + tt.getDetails());
+			}
+			// totalBudget += val1;
+			totalActual += val2;
+			System.out.printf(formatString, name, val1, val2, calculatePercentage(val1, val2));
+		}
+		System.out.println("-------------------------  --------  --------  ---------");
+		System.out.printf(formatString, "Total", totalBudget, totalActual,
+				calculatePercentage(totalBudget, totalActual));
+		System.out.println("=========================  ========  ========  =========");
+		System.out.println();
+
+	}
 }

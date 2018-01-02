@@ -13,7 +13,7 @@ public class ExpenseCategory {
 		updateAmount(amount, "");
 	}
 
-	public void updateAmount(int amount, String details ) {
+	public void updateAmount(int amount, String details) {
 		// System.out.println(" *** AMOUTN TO BE UPDATED : " + amount);
 		transactions.add(new Transaction(amount, details));
 	}
@@ -39,5 +39,10 @@ public class ExpenseCategory {
 
 	public boolean isEmpty() {
 		return transactions.isEmpty();
+	}
+
+	@SuppressWarnings("unchecked")
+	public LinkedList<Transaction> getAllTransactions() {
+		return (LinkedList<Transaction>) transactions.clone();
 	}
 }
