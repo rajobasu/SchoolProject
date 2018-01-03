@@ -123,9 +123,9 @@ public class Report {
 			int amount = head.getActualAmount();
 			String name = head.getHeadName();
 			System.out.println("\nHead Name: "+name);
-			for (Transaction tt : head.getActualTransactions()) {
+			for (Transaction txn : head.getActualTransactions()) {
 				//System.out.println("                  "+tt.getAmount() + " : " + tt.getDetails());
-				System.out.printf("%-25s  %8d  %-50s","",tt.getAmount() ,tt.getDetails());
+				System.out.printf("%-25s  %8d  %-50s","",txn.getAmount() ,txn.getDetails());
 				System.out.println();
 			}
 			// totalBudget += val1;
