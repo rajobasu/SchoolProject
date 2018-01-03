@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * @author rajobasu of SLS
  *
  */
-public class Expense {
-	private static Expense INSTANCE;
+public class ExpenseManager {
+	private static ExpenseManager INSTANCE;
 
 	public static final int DEF_VAL = 1000;
 	private ArrayList<ExpenseHead> expenseHeads;
@@ -28,7 +28,7 @@ public class Expense {
 	 * Create a new Expense object and create a set of {@code ExpenseHead}s for
 	 * all the heads, along with a default value for them.
 	 */
-	public Expense() {
+	public ExpenseManager() {
 		expenseHeads = new ArrayList<>();
 
 		for (String name : headNames) {
@@ -88,9 +88,9 @@ public class Expense {
 		return false;
 	}
 
-	public static Expense getInstance() {
+	public static ExpenseManager getInstance() {
 		if (INSTANCE == null)
-			INSTANCE = new Expense();
+			INSTANCE = new ExpenseManager();
 
 		return INSTANCE;
 	}

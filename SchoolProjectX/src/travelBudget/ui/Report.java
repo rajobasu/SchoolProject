@@ -1,6 +1,9 @@
 package travelBudget.ui;
 
-import travelBudget.core.Expense;
+import travelBudget.core.ExpenseManager;
+
+import java.io.IOException;
+
 import travelBudget.core.ExpenseHead;
 import travelBudget.core.Transaction;
 
@@ -16,7 +19,7 @@ import travelBudget.core.Transaction;
  *
  */
 public class Report {
-	private Expense expense;
+	private ExpenseManager expenseMgr;
 
 	/**
 	 * Create a new {@code Report} object from the budgeted and actual expenses
@@ -29,8 +32,8 @@ public class Report {
 	 *            - A reference of the {@code ActualExpense} that stores the
 	 *            actual expenses incurred.
 	 */
-	public Report(Expense expense) {
-		this.expense = expense;
+	public Report(ExpenseManager expenseMgr) {
+		this.expenseMgr = expenseMgr;
 	}
 
 	/**
@@ -77,7 +80,7 @@ public class Report {
 		String formatString = "%-25s  %8d  %8d  %7.1f%%\n";
 		System.out.printf("%-25s  Budgeted    Actual  Deviation\n", "Head");
 		System.out.println("-------------------------  --------  --------  --------- ");
-		for (ExpenseHead head : expense.getExpenseHeads()) {
+		for (ExpenseHead head : expenseMgr.getExpenseHeads()) {
 			int val1 = head.getBudgetedAmount();
 			int val2 = head.getActualAmount();
 			String name = head.getHeadName();
@@ -93,7 +96,8 @@ public class Report {
 
 	}
 
-	public void showActualExpensesDetail() {
+	public void showActualExpensesDetail() throws IOException {
+		InputTaker taker = new InputTaker();
 		int totalBudget = 0;
 		int totalActual = 0;
 		System.out.println("");
@@ -109,25 +113,32 @@ public class Report {
 
 		// System.out.println("****************************************************");
 		String formatString = "%-25s  %8d  %-50s\n";
-		System.out.printf("%-25s  Actual Exp  Details \n", "Head");
-		System.out.println("-------------------------  --------  --------  --------- ");
-		for (ExpenseHead head : expense.getExpenseHeads()) {
-			 int val1 = head.getBudgetedAmount();
-			int val2 = head.getActualAmount();
+//		System.out.printf("%-25s  Actual Exp  Details \n", "Head");
+//		System.out.println("-------------------------  --------  --------  --------- ");
+		System.out.println("Head                         Amount  Details ");
+		System.out.println("-------------------------  --------  --------------------");
+
+		for (ExpenseHead head : expenseMgr.getExpenseHeads()) {
+			// int val1 = head.getBudgetedAmount();
+			int amount = head.getActualAmount();
 			String name = head.getHeadName();
-			
+			System.out.println("\nHead Name: "+name);
 			for (Transaction tt : head.getActualTransactions()) {
-				System.out.println("                  "+tt.getAmount() + " : " + tt.getDetails());
+				//System.out.println("                  "+tt.getAmount() + " : " + tt.getDetails());
+				System.out.printf("%-25s  %8d  %-50s","",tt.getAmount() ,tt.getDetails());
+				System.out.println();
 			}
 			// totalBudget += val1;
-			totalActual += val2;
-			System.out.printf(formatString, name, val1, val2, calculatePercentage(val1, val2));
+			//totalActual += val2;
+			System.out.printf("%-25s  %8d", "Total Amount:", amount);
+			System.out.println();
+			totalActual += amount;
 		}
 		System.out.println("-------------------------  --------  --------  ---------");
-		System.out.printf(formatString, "Total", totalBudget, totalActual,
-				calculatePercentage(totalBudget, totalActual));
+		System.out.printf("%-25s  %8d\n", "Total", totalActual);
 		System.out.println("=========================  ========  ========  =========");
 		System.out.println();
 
+		taker.getInputString("Press Enter to continue...");
 	}
 }

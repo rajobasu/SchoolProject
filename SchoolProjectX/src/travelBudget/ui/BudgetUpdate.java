@@ -2,7 +2,7 @@ package travelBudget.ui;
 
 import java.io.IOException;
 
-import travelBudget.core.Expense;
+import travelBudget.core.ExpenseManager;
 import travelBudget.core.ExpenseHead;
 
 /**
@@ -13,14 +13,14 @@ import travelBudget.core.ExpenseHead;
  *
  */
 public class BudgetUpdate {
-	private Expense expense;
+	private ExpenseManager expense;
 	private int type;
 
 	/**
 	 * 
 	 * @param expense
 	 */
-	public BudgetUpdate(Expense expense, int type) {
+	public BudgetUpdate(ExpenseManager expense, int type) {
 		super();
 		this.expense = expense;
 		this.type = type;
@@ -79,7 +79,7 @@ public class BudgetUpdate {
 
 				if (x < 1)
 					return false;
-				if (x > Expense.getHeadCount())
+				if (x > ExpenseManager.getHeadCount())
 					return false;
 
 				return true;

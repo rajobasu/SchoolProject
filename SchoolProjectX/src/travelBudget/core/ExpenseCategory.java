@@ -29,7 +29,7 @@ public class ExpenseCategory {
 
 	public int getAmount() {
 		if (transactions.isEmpty())
-			return Expense.DEF_VAL;
+			return ExpenseManager.DEF_VAL;
 		int sum = 0;
 		for (Transaction i : transactions) {
 			sum += i.amount;

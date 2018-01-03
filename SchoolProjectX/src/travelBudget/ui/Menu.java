@@ -2,7 +2,7 @@ package travelBudget.ui;
 
 import java.io.IOException;
 
-import travelBudget.core.Expense;
+import travelBudget.core.ExpenseManager;
 import travelBudget.core.ExpenseHead;
 
 /**
@@ -13,7 +13,7 @@ import travelBudget.core.ExpenseHead;
  *
  */
 public class Menu {
-	private Expense expense;
+	private ExpenseManager expense;
 	public final int MENU_EXIT =9;
 
 	// private TourDetails tourDetails;
@@ -22,7 +22,7 @@ public class Menu {
 	 * the start may cause errors.
 	 */
 	public void init() {
-		expense = new Expense();
+		expense = new ExpenseManager();
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Menu {
 
 		System.out.println("Choose : ");
 		System.out.println("   1. Update Budgeted Expense");
-		System.out.println("   2. Update Actual Expense");
+		System.out.println("   2. Enter Actual Expense");
 		System.out.println("   3. Show Report");
 		System.out.println("   4. Show Actual Expenses");
 		System.out.println("   5. Add New Head");
@@ -128,7 +128,7 @@ public class Menu {
 		InputTaker inputTaker = new InputTaker();
 
 		String headName = inputTaker.getInputString("Enter name of new head : ");
-		int initVal = new InputTaker().getInputInt("Enter initial amount : ", Expense.DEF_VAL);
+		int initVal = new InputTaker().getInputInt("Enter initial amount : ", ExpenseManager.DEF_VAL);
 		expense.addNewHead(headName, initVal);
 		
 	}
@@ -167,7 +167,7 @@ public class Menu {
 		new Report(expense).showTabular();
 	}
 
-	public void showActualExpensesDetail()
+	public void showActualExpensesDetail() throws IOException
 	{
 		new Report(expense).showActualExpensesDetail();
 		
