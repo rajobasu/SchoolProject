@@ -23,7 +23,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		System.out.println("------------------------------------");
-		System.out.println(" Travel Budget System - Version 1.1 ");
+		System.out.println(" Travel Budget System - Version 1.2 ");
 		System.out.println("------------------------------------\n");
 		System.out.println("Program Started\n");
 		new Menu().execute();
