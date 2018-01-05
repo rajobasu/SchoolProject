@@ -101,4 +101,12 @@ public class InputTaker {
 		System.out.println(message);
 		return br.readLine();
 	}
+	public String getInputString(String message, String defaultValue) throws IOException {
+		System.out.println(message);
+		String m=br.readLine();
+		if(m.isEmpty())
+			return defaultValue;
+		else 
+			return m;
+	}
 }

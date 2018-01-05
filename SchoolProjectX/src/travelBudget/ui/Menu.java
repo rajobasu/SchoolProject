@@ -59,6 +59,8 @@ public class Menu {
 		System.out.println("   4. Show Actual Expenses");
 		System.out.println("   5. Add New Head");
 		System.out.println("   6. Remove Head");
+		System.out.println("   7. Enter/Edit Tour Data");
+		
 		System.out.println("   9. Exit");
 		System.out.println();
 	}
@@ -107,6 +109,10 @@ public class Menu {
 		case 6:
 			removeExpenseHead();
 			break;
+		case 7:
+			editTour();
+			break;
+			
 		case MENU_EXIT:
 			return false;
 
@@ -115,6 +121,13 @@ public class Menu {
 		return true;
 	}
 
+	
+	public void editTour() throws IOException
+	{
+		TourEditor te = new TourEditor();
+		te.update();
+	}
+	
 	public void removeExpenseHead() throws IOException {
 		InputTaker inputTaker = new InputTaker();
 		ArrayList<String> headNames = expense.getHeadNames();

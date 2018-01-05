@@ -16,7 +16,8 @@ public class ExpenseManager {
 	private static ArrayList<String> headNames;
 
 	private String errorMsg;
-	
+	protected TourDetails tourDetails=new TourDetails();
+
 	static {
 		headNames = new ArrayList<>();
 		headNames.add("Lodging");
@@ -145,4 +146,20 @@ public class ExpenseManager {
 
 		return INSTANCE;
 	}
+
+	public String getTourName() {
+		// TODO Auto-generated method stub
+		return tourDetails.getTourName();
+	}
+	public String getTourDetails() {
+		// TODO Auto-generated method stub
+		return tourDetails.getTourDetails();
+	}
+
+	public void updateTourInfo(String tourName, String details) {
+		// TODO Auto-generated method stub
+		tourDetails.update(tourName, details);
+	}
+
+	
 }
