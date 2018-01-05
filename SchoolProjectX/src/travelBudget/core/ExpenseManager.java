@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class ExpenseManager {
 	private static ExpenseManager INSTANCE;
 
-	public static final int DEF_VAL = 1000;
+	public static final int DEF_VAL = 0;
 	private ArrayList<ExpenseHead> expenseHeads;
 	private static ArrayList<String> headNames;
 
+	private String errorMsg;
+	
 	static {
 		headNames = new ArrayList<>();
 		headNames.add("Lodging");
@@ -72,18 +74,67 @@ public class ExpenseManager {
 		return headNames.get(choice);
 	}
 
-	public void addNewHead(String s, int value) {
+	public ArrayList<String>  getHeadNames() {
+					
+		return headNames;
+	}
+
+	protected void setErrorMessage(String msg)
+	{
+		errorMsg = msg;
+	}
+	
+	public String getLastErrorMessage()
+	{
+		return errorMsg;
+		
+	}
+	
+	public boolean addNewHead(String s, int value) {
+		
+		if(headNames.contains(s))
+		{
+			// head name already exists
+			setErrorMessage("Expense Head Name already exists");
+			return false;
+		}
 		headNames.add(s);
 		ExpenseHead eh;
 		expenseHeads.add(eh = new ExpenseHead(s));
 		eh.updateBudgetedAmount(value);
+	
+		return true;
 	}
 
-	public void removeHead(String s) {
-		headNames.remove(s);
+	public boolean removeHead(String s) {
+		//headNames.remove(s);
 		//expenseHeads.remove(index);
+		return removeExpenseHead(s);
 	}
-	
+
+	protected boolean removeExpenseHead(String s) {
+		int index=0;
+		boolean bSuccess=false;
+		for(ExpenseHead eh: expenseHeads)
+		{
+			index++;
+			if(eh.getHeadName().equalsIgnoreCase(s))
+			{
+				if(eh.getActualAmount()==0)
+				{
+					//No actual amount mentioned, so it can be removed
+					expenseHeads.remove(index);
+					headNames.remove(index);
+					bSuccess=true;
+				} else {
+					setErrorMessage("Expense Head has actual expense amounts");
+				}
+			}
+		}
+		//expenseHeads.remove(index);
+		return bSuccess;
+	}
+
 	public boolean hasTransactions(int i){
 		return false;
 	}

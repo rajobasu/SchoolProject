@@ -1,6 +1,7 @@
 package travelBudget.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import travelBudget.core.ExpenseManager;
 import travelBudget.core.ExpenseHead;
@@ -14,7 +15,7 @@ import travelBudget.core.ExpenseHead;
  */
 public class Menu {
 	private ExpenseManager expense;
-	public final int MENU_EXIT =9;
+	public final int MENU_EXIT = 9;
 
 	// private TourDetails tourDetails;
 	/**
@@ -74,7 +75,7 @@ public class Menu {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override
 			public boolean isValid(int x) {
-				return x > 0 && x < (MENU_EXIT+1);
+				return x > 0 && x < (MENU_EXIT + 1);
 			}
 
 			@Override
@@ -104,15 +105,7 @@ public class Menu {
 			addNewExpenseHead();
 			break;
 		case 6:
-			/*int index = new InputTaker(new Validator() {
-				@Override
-				public boolean isValid(int x) {
-					if (x == -1)
-						return true;
-					return x > 0 && x <= Expense.getHeadCount();
-				}
-			}).getInputInt("Enter head name to delete : ");*/
-			//xpense.removeHead(index - 1);
+			removeExpenseHead();
 			break;
 		case MENU_EXIT:
 			return false;
@@ -122,16 +115,65 @@ public class Menu {
 		return true;
 	}
 
-	
-	public void addNewExpenseHead() throws IOException
-	{
+	public void removeExpenseHead() throws IOException {
 		InputTaker inputTaker = new InputTaker();
-
-		String headName = inputTaker.getInputString("Enter name of new head : ");
-		int initVal = new InputTaker().getInputInt("Enter initial amount : ", ExpenseManager.DEF_VAL);
-		expense.addNewHead(headName, initVal);
+		ArrayList<String> headNames = expense.getHeadNames();
+		int i = 1;
 		
+		System.out.println("");
+		System.out.println("==============================================");
+		System.out.println(" Travel Budget System : Remove Expense Head");
+		System.out.println("==============================================");
+		System.out.println("");
+		System.out.println(" Expense Heads");
+		
+		
+		for (String n : headNames) {
+			System.out.println("    "+ i + ". " + n);
+			i++;
+		}
+		System.out.println();
+
+		int index = new InputTaker(new Validator() {
+			@Override
+			public boolean isValid(int x) {
+				if (x == -1)
+					return true;
+				return x > 0 && x <= headNames.size();
+			}
+		}).getInputInt("Enter head name to delete (-1 to exit): ");
+		if (index != -1) {
+			if (expense.removeHead(headNames.get(index - 1))) {
+				System.out.println("Info: Expense Head removed successfully.");
+			} else {
+				System.out.println("Error: Expense Head could not be removed ("+expense.getLastErrorMessage()+").");
+
+			}
+		}
+
 	}
+
+	public void addNewExpenseHead() throws IOException {
+		InputTaker inputTaker = new InputTaker();
+		
+		System.out.println("");
+		System.out.println("==============================================");
+		System.out.println(" Travel Budget System : Add New Expense Head");
+		System.out.println("==============================================");
+		System.out.println("");
+
+		String headName = inputTaker.getInputString("   Enter name of new head : ");
+		int initVal = new InputTaker().getInputInt("   Enter initial amount : ", ExpenseManager.DEF_VAL);
+		if(expense.addNewHead(headName, initVal))
+		{
+			System.out.println("Info: Expense Head added successfully.");
+		} else {
+			System.out.println("Error: Expense Head could not be added ("+expense.getLastErrorMessage()+").");
+
+		}
+
+	}
+
 	/**
 	 * Update the budgeted expense in a manner that the user wants. Includes
 	 * prompting, taking input, and updating the actual value.
@@ -167,10 +209,9 @@ public class Menu {
 		new Report(expense).showTabular();
 	}
 
-	public void showActualExpensesDetail() throws IOException
-	{
+	public void showActualExpensesDetail() throws IOException {
 		new Report(expense).showActualExpensesDetail();
-		
+
 	}
 
 }
