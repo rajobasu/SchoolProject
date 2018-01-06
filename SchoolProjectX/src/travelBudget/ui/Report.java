@@ -98,7 +98,6 @@ public class Report {
 
 	public void showActualExpensesDetail() throws IOException {
 		InputTaker taker = new InputTaker();
-		int totalBudget = 0;
 		int totalActual = 0;
 		System.out.println("");
 		// System.out.println("----------------------------------------------");
@@ -112,7 +111,7 @@ public class Report {
 		// "--------");
 
 		// System.out.println("****************************************************");
-		String formatString = "%-25s  %8d  %-50s\n";
+//		String formatString = "%-25s  %8d  %-50s\n";
 //		System.out.printf("%-25s  Actual Exp  Details \n", "Head");
 //		System.out.println("-------------------------  --------  --------  --------- ");
 		System.out.println("Head                         Amount  Details ");

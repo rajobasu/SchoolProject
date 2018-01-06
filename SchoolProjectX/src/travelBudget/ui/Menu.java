@@ -129,7 +129,6 @@ public class Menu {
 	}
 	
 	public void removeExpenseHead() throws IOException {
-		InputTaker inputTaker = new InputTaker();
 		ArrayList<String> headNames = expense.getHeadNames();
 		int i = 1;
 		

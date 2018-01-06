@@ -16,7 +16,7 @@ public class ExpenseManager {
 	private static ArrayList<String> headNames;
 
 	private String errorMsg;
-	protected TourDetails tourDetails=new TourDetails();
+	protected TourDetails tourDetails = new TourDetails();
 
 	static {
 		headNames = new ArrayList<>();
@@ -75,26 +75,23 @@ public class ExpenseManager {
 		return headNames.get(choice);
 	}
 
-	public ArrayList<String>  getHeadNames() {
-					
+	public ArrayList<String> getHeadNames() {
+
 		return headNames;
 	}
 
-	protected void setErrorMessage(String msg)
-	{
+	protected void setErrorMessage(String msg) {
 		errorMsg = msg;
 	}
-	
-	public String getLastErrorMessage()
-	{
+
+	public String getLastErrorMessage() {
 		return errorMsg;
-		
+
 	}
-	
+
 	public boolean addNewHead(String s, int value) {
 		
-		if(headNames.contains(s))
-		{
+		if (headNames.contains(s)) {
 			// head name already exists
 			setErrorMessage("Expense Head Name already exists");
 			return false;
@@ -103,19 +100,20 @@ public class ExpenseManager {
 		ExpenseHead eh;
 		expenseHeads.add(eh = new ExpenseHead(s));
 		eh.updateBudgetedAmount(value);
-	
+
 		return true;
 	}
 
 	public boolean removeHead(String s) {
-		//headNames.remove(s);
-		//expenseHeads.remove(index);
+		// headNames.remove(s);
+		// expenseHeads.remove(index);
 		return removeExpenseHead(s);
 	}
 
 	protected boolean removeExpenseHead(String s) {
 		int index=0;
 		boolean bSuccess=false;
+		ExpenseHead toRemove = null;
 		for(ExpenseHead eh: expenseHeads)
 		{
 			index++;
@@ -124,7 +122,8 @@ public class ExpenseManager {
 				if(eh.getActualAmount()==0)
 				{
 					//No actual amount mentioned, so it can be removed
-					expenseHeads.remove(index);
+					toRemove = eh;
+					//expenseHeads.remove(index);
 					headNames.remove(index);
 					bSuccess=true;
 				} else {
@@ -132,11 +131,12 @@ public class ExpenseManager {
 				}
 			}
 		}
+		expenseHeads.remove(toRemove);
 		//expenseHeads.remove(index);
 		return bSuccess;
 	}
 
-	public boolean hasTransactions(int i){
+	public boolean hasTransactions(int i) {
 		return false;
 	}
 
@@ -151,6 +151,7 @@ public class ExpenseManager {
 		// TODO Auto-generated method stub
 		return tourDetails.getTourName();
 	}
+
 	public String getTourDetails() {
 		// TODO Auto-generated method stub
 		return tourDetails.getTourDetails();
@@ -161,5 +162,4 @@ public class ExpenseManager {
 		tourDetails.update(tourName, details);
 	}
 
-	
 }
