@@ -57,7 +57,7 @@ public class InputTaker {
 	 * 
 	 * 
 	 */
-	public int getInputInt(String inputMessage, int defValue) throws NumberFormatException, IOException {
+	public int getInputInt(String inputMessage, int defValue) {
 		boolean exit = true;
 		int n = defValue;
 		do {
@@ -87,26 +87,33 @@ public class InputTaker {
 			} catch (NumberFormatException e) {
 				System.out.println("Error: Only Integer values are accepted !");
 				exit = false;
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
 		} while (!exit);
 		return n;
 	}
 
-	public int getInputInt(String inputMessage) throws NumberFormatException, IOException {
+	public int getInputInt(String inputMessage) {
 		return getInputInt(inputMessage, NO_DEFAULT_VAL);
 	}
 
-	public String getInputString(String message) throws IOException {
+	public String getInputString(String message) {
 		return getInputString(message, "");
 	}
 
-	public String getInputString(String message, String defaultValue) throws IOException {
-		System.out.println(message);
-		String m = br.readLine();
-		if (m.isEmpty())
-			return defaultValue;
-		else
-			return m;
+	public String getInputString(String message, String defaultValue) {
+		try {
+			System.out.println(message);
+			String m = br.readLine();
+			if (m.isEmpty())
+				return defaultValue;
+			else
+				return m;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
