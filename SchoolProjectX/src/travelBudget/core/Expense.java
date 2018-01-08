@@ -2,10 +2,10 @@ package travelBudget.core;
 
 import java.util.LinkedList;
 
-public class AmountType {
+public class Expense {
 	private LinkedList<Transaction> transactions;
 
-	public AmountType() {
+	public Expense() {
 		transactions = new LinkedList<>();
 	}
 
@@ -14,13 +14,10 @@ public class AmountType {
 	}
 
 	public void updateAmount(int amount, String details) {
-		// System.out.println(" *** AMOUNT TO BE UPDATED : " + amount);
-		// transactions.add(new Transaction(amount, details));
 		updateAmount(new Transaction(amount, details));
 	}
 
 	public void updateAmount(Transaction txn) {
-		// System.out.println(" *** AMOUNT TO BE UPDATED : " + amount);
 		transactions.add(txn);
 	}
 

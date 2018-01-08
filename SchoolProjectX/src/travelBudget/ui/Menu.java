@@ -1,10 +1,9 @@
 package travelBudget.ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import travelBudget.core.ExpenseManager;
 import travelBudget.core.ExpenseHead;
+import travelBudget.core.ExpenseManager;
 
 /**
  * This class keeps the progam running and process the choices given by the
@@ -30,9 +29,9 @@ public class Menu {
 	 * The starting point of execution of the system. The user is prompted for
 	 * action again and again until he exits.
 	 * 
-	 * @throws IOException
+	 * 
 	 */
-	public void execute() throws IOException {
+	public void execute() {
 		init();
 		do {
 			showMenu();
@@ -61,7 +60,7 @@ public class Menu {
 		System.out.println("   6. Remove Head");
 		System.out.println("   7. Enter/Edit Tour Data");
 
-		System.out.println("   9. Exit");
+		System.out.println("   8. Exit");
 		System.out.println();
 	}
 
@@ -71,9 +70,9 @@ public class Menu {
 	 * back information on whether the user wants to exit.
 	 * 
 	 * @return - Whether the user wants to exit.
-	 * @throws IOException
+	 * 
 	 */
-	public boolean executeChoice() throws IOException {
+	public boolean executeChoice() {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override
 			public boolean isValid(int x) {
@@ -122,12 +121,12 @@ public class Menu {
 		return true;
 	}
 
-	public void editTour() throws IOException {
+	public void editTour() {
 		TourEditor te = new TourEditor();
 		te.update();
 	}
 
-	public void removeExpenseHead() throws IOException {
+	public void removeExpenseHead() {
 		ArrayList<String> headNames = expense.getHeadNames();
 		int i = 1;
 
@@ -163,7 +162,7 @@ public class Menu {
 
 	}
 
-	public void addNewExpenseHead() throws IOException {
+	public void addNewExpenseHead() {
 		InputTaker inputTaker = new InputTaker();
 
 		System.out.println("");
@@ -174,6 +173,7 @@ public class Menu {
 
 		String headName = inputTaker.getInputString("   Enter name of new head : ");
 		int initVal = new InputTaker().getInputInt("   Enter initial amount : ", ExpenseManager.DEF_VAL);
+
 		if (expense.addNewHead(headName, initVal)) {
 			System.out.println("Info: Expense Head added successfully.");
 		} else {
@@ -187,10 +187,10 @@ public class Menu {
 	 * Update the budgeted expense in a manner that the user wants. Includes
 	 * prompting, taking input, and updating the actual value.
 	 * 
-	 * @throws IOException
+	 * 
 	 */
-	public void updateBudgetedExpense() throws IOException {
-		BudgetUpdate budgetUpdate = new BudgetUpdate(expense, ExpenseHead.TYPE_BUDGET_HEAD);
+	public void updateBudgetedExpense() {
+		BudgetUpdator budgetUpdate = new BudgetUpdator(expense, ExpenseHead.TYPE_BUDGET_HEAD);
 		do {
 			budgetUpdate.showExpenseHeads();
 		} while (budgetUpdate.executeUserChoice());
@@ -200,10 +200,10 @@ public class Menu {
 	 * Update the actual expense in a manner that the user wants. Includes
 	 * prompting, taking input, and updating the actual value.
 	 * 
-	 * @throws IOException
+	 * 
 	 */
-	public void updateActualExpense() throws IOException {
-		BudgetUpdate budgetInput = new BudgetUpdate(expense, ExpenseHead.TYPE_ACTUAL_HEAD);
+	public void updateActualExpense() {
+		BudgetUpdator budgetInput = new BudgetUpdator(expense, ExpenseHead.TYPE_ACTUAL_HEAD);
 		do {
 			budgetInput.showExpenseHeads();
 		} while (budgetInput.executeUserChoice());
@@ -218,7 +218,7 @@ public class Menu {
 		new Report(expense).showTabular();
 	}
 
-	public void showActualExpensesDetail() throws IOException {
+	public void showActualExpensesDetail() {
 		new Report(expense).showActualExpensesDetail();
 
 	}

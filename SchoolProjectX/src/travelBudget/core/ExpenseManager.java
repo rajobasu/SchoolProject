@@ -16,17 +16,7 @@ public class ExpenseManager {
 	private static ArrayList<String> headNames;
 
 	private String errorMsg;
-	protected TourDetails tourDetails = new TourDetails();
-
-	static {
-		headNames = new ArrayList<>();
-
-		headNames.add("Lodging");
-		headNames.add("Travel");
-		headNames.add("Food");
-		headNames.add("Sightseeing");
-		headNames.add("Miscelleneous");
-	}
+	private TourDetails tourDetails = new TourDetails();
 
 	/**
 	 * Create a new Expense object and create a set of {@code ExpenseHead}s for
@@ -34,6 +24,13 @@ public class ExpenseManager {
 	 */
 	private ExpenseManager() {
 		expenseHeads = new ArrayList<>();
+		headNames = new ArrayList<>();
+
+		headNames.add("Lodging");
+		headNames.add("Travel");
+		headNames.add("Food");
+		headNames.add("Sightseeing");
+		headNames.add("Miscelleneous");
 
 		for (String name : headNames) {
 			expenseHeads.add(new ExpenseHead(name));
@@ -81,7 +78,7 @@ public class ExpenseManager {
 		return headNames;
 	}
 
-	protected void setErrorMessage(String msg) {
+	private void setErrorMessage(String msg) {
 		errorMsg = msg;
 	}
 
@@ -91,9 +88,7 @@ public class ExpenseManager {
 	}
 
 	public boolean addNewHead(String s, int value) {
-
 		if (headNames.contains(s)) {
-			// head name already exists
 			setErrorMessage("Expense Head Name already exists");
 			return false;
 		}
@@ -106,12 +101,10 @@ public class ExpenseManager {
 	}
 
 	public boolean removeHead(String s) {
-		// headNames.remove(s);
-		// expenseHeads.remove(index);
 		return removeExpenseHead(s);
 	}
 
-	protected boolean removeExpenseHead(String s) {
+	public boolean removeExpenseHead(String s) {
 		int index = 0;
 		boolean bSuccess = false;
 		ExpenseHead toRemove = null;

@@ -35,7 +35,7 @@ public class ExpenseEditor {
 	 * 
 	 * @throws IOException
 	 */
-	public void updateValue() throws IOException {
+	public void updateValue() {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 
 			@Override

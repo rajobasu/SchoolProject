@@ -10,13 +10,14 @@ import java.util.LinkedList;
  * @author rajob
  *
  */
+
 public class ExpenseHead {
 	public static final int TYPE_BUDGET_HEAD = -1423;
 	public static final int TYPE_ACTUAL_HEAD = -4654;
-	
+
 	private String headName;
-	private AmountType budgetedAmount;
-	private AmountType actualAmount;
+	private Expense budgetedAmount;
+	private Expense actualAmount;
 
 	/**
 	 * Create a new {@code ExpenseHead} object from the {@code headName} and the
@@ -29,10 +30,10 @@ public class ExpenseHead {
 	 *            - The amount spent under that head.
 	 */
 	public ExpenseHead(String headName) {
-		super();
+
 		this.headName = headName;
 
-		budgetedAmount = new AmountType() {
+		budgetedAmount = new Expense() {
 			@Override
 			public void updateAmount(int amount) {
 				clear();
@@ -40,7 +41,7 @@ public class ExpenseHead {
 			}
 		};
 
-		actualAmount = new AmountType();
+		actualAmount = new Expense();
 	}
 
 	/**
@@ -92,12 +93,7 @@ public class ExpenseHead {
 	}
 
 	public void updateAmount(int amount, int type) {
-		if (type == TYPE_ACTUAL_HEAD)
-			updateActualAmount(amount, "");
-		if (type == TYPE_BUDGET_HEAD)
-			updateBudgetedAmount(amount);
-
-		// System.out.println(type);
+		updateAmount(amount, "", type);
 	}
 
 	public void updateAmount(int amount, String details, int type) {
@@ -105,11 +101,9 @@ public class ExpenseHead {
 			updateActualAmount(amount, details);
 		if (type == TYPE_BUDGET_HEAD)
 			updateBudgetedAmount(amount);
-
-		// System.out.println(type);
 	}
 
-	public AmountType getAmountType(int type) {
+	public Expense getAmountType(int type) {
 		if (type == TYPE_ACTUAL_HEAD)
 			return actualAmount;
 		if (type == TYPE_BUDGET_HEAD)

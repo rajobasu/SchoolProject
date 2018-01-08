@@ -1,9 +1,7 @@
 package travelBudget.ui;
 
-import java.io.IOException;
-
-import travelBudget.core.ExpenseManager;
 import travelBudget.core.ExpenseHead;
+import travelBudget.core.ExpenseManager;
 
 /**
  * Handles a budget update operation. It changes the {@code Expense} that is
@@ -12,7 +10,7 @@ import travelBudget.core.ExpenseHead;
  * @author rajob
  *
  */
-public class BudgetUpdate {
+public class BudgetUpdator {
 	private ExpenseManager expense;
 	private int type;
 
@@ -20,8 +18,7 @@ public class BudgetUpdate {
 	 * 
 	 * @param expense
 	 */
-	public BudgetUpdate(ExpenseManager expense, int type) {
-		super();
+	public BudgetUpdator(ExpenseManager expense, int type) {
 		this.expense = expense;
 		this.type = type;
 	}
@@ -45,7 +42,6 @@ public class BudgetUpdate {
 			System.out.println("==============================================");
 		}
 
-
 	}
 
 	public void showExpenseHeads() {
@@ -65,7 +61,7 @@ public class BudgetUpdate {
 
 	}
 
-	public boolean executeUserChoice() throws IOException {
+	public boolean executeUserChoice() {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override
 			public String getErrorMessage() {
@@ -90,10 +86,10 @@ public class BudgetUpdate {
 
 		if (choice == -1) {
 			return false;
-		} else {
-			ExpenseEditor ed = new ExpenseEditor(expense.getExpenseHead(choice), type);
-			ed.updateValue();
 		}
+		ExpenseEditor ed = new ExpenseEditor(expense.getExpenseHead(choice), type);
+		ed.updateValue();
+
 		return true;
 	}
 }

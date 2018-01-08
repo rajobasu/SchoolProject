@@ -101,7 +101,7 @@ public class Report {
 	 * 
 	 * @throws IOException
 	 */
-	public void showActualExpensesDetail() throws IOException {
+	public void showActualExpensesDetail() {
 		InputTaker taker = new InputTaker();
 		int totalActual = 0;
 		System.out.println("");
