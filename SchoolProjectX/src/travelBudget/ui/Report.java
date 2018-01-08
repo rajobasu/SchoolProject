@@ -77,7 +77,7 @@ public class Report {
 		// "--------");
 
 		// System.out.println("****************************************************");
-		String formatString = "%-25s  %8d  %8d  %7.1f%%\n";
+		String formatString = "%-25s  %8d  %8d  %7.1f %% \n";
 		System.out.printf("%-25s  Budgeted    Actual  Deviation\n", "Head");
 		System.out.println("-------------------------  --------  --------  --------- ");
 		for (ExpenseHead head : expenseMgr.getExpenseHeads()) {
@@ -96,6 +96,11 @@ public class Report {
 
 	}
 
+	/**
+	 * transaction
+	 * 
+	 * @throws IOException
+	 */
 	public void showActualExpensesDetail() throws IOException {
 		InputTaker taker = new InputTaker();
 		int totalActual = 0;
@@ -111,24 +116,21 @@ public class Report {
 		// "--------");
 
 		// System.out.println("****************************************************");
-//		String formatString = "%-25s  %8d  %-50s\n";
-//		System.out.printf("%-25s  Actual Exp  Details \n", "Head");
-//		System.out.println("-------------------------  --------  --------  --------- ");
+		// String formatString = "%-25s %8d %-50s\n";
+		// System.out.printf("%-25s Actual Exp Details \n", "Head");
+		// System.out.println("------------------------- -------- --------
+		// --------- ");
 		System.out.println("Head                         Amount  Details ");
 		System.out.println("-------------------------  --------  --------------------");
 
 		for (ExpenseHead head : expenseMgr.getExpenseHeads()) {
-			// int val1 = head.getBudgetedAmount();
 			int amount = head.getActualAmount();
 			String name = head.getHeadName();
-			System.out.println("\nHead Name: "+name);
+			System.out.println("\nHead Name: " + name);
 			for (Transaction txn : head.getActualTransactions()) {
-				//System.out.println("                  "+tt.getAmount() + " : " + tt.getDetails());
-				System.out.printf("%-25s  %8d  %-50s","",txn.getAmount() ,txn.getDetails());
+				System.out.printf("%-25s  %8d  %-50s", "", txn.getAmount(), txn.getDetails());
 				System.out.println();
 			}
-			// totalBudget += val1;
-			//totalActual += val2;
 			System.out.printf("%-25s  %8d", "Total Amount:", amount);
 			System.out.println();
 			totalActual += amount;

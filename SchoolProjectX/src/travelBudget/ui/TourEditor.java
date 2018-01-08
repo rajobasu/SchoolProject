@@ -10,6 +10,7 @@ public class TourEditor {
 		InputTaker it = new InputTaker();
 		
 		ExpenseManager em = ExpenseManager.getInstance();
+		
 		System.out.println("");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Tour Details");

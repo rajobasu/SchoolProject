@@ -20,6 +20,7 @@ public class ExpenseManager {
 
 	static {
 		headNames = new ArrayList<>();
+
 		headNames.add("Lodging");
 		headNames.add("Travel");
 		headNames.add("Food");
@@ -31,7 +32,7 @@ public class ExpenseManager {
 	 * Create a new Expense object and create a set of {@code ExpenseHead}s for
 	 * all the heads, along with a default value for them.
 	 */
-	public ExpenseManager() {
+	private ExpenseManager() {
 		expenseHeads = new ArrayList<>();
 
 		for (String name : headNames) {
@@ -90,15 +91,15 @@ public class ExpenseManager {
 	}
 
 	public boolean addNewHead(String s, int value) {
-		
+
 		if (headNames.contains(s)) {
 			// head name already exists
 			setErrorMessage("Expense Head Name already exists");
 			return false;
 		}
 		headNames.add(s);
-		ExpenseHead eh;
-		expenseHeads.add(eh = new ExpenseHead(s));
+		ExpenseHead eh = new ExpenseHead(s);
+		expenseHeads.add(eh);
 		eh.updateBudgetedAmount(value);
 
 		return true;
@@ -111,28 +112,26 @@ public class ExpenseManager {
 	}
 
 	protected boolean removeExpenseHead(String s) {
-		int index=0;
-		boolean bSuccess=false;
+		int index = 0;
+		boolean bSuccess = false;
 		ExpenseHead toRemove = null;
-		for(ExpenseHead eh: expenseHeads)
-		{
+		for (ExpenseHead eh : expenseHeads) {
 			index++;
-			if(eh.getHeadName().equalsIgnoreCase(s))
-			{
-				if(eh.getActualAmount()==0)
-				{
-					//No actual amount mentioned, so it can be removed
+			if (eh.getHeadName().equalsIgnoreCase(s)) {
+				if (eh.getActualAmount() == 0) {
+					// No actual amount mentioned, so it can be removed
 					toRemove = eh;
-					//expenseHeads.remove(index);
+					// expenseHeads.remove(index);
 					headNames.remove(index);
-					bSuccess=true;
+					bSuccess = true;
+					break;
 				} else {
 					setErrorMessage("Expense Head has actual expense amounts");
 				}
 			}
 		}
 		expenseHeads.remove(toRemove);
-		//expenseHeads.remove(index);
+		// expenseHeads.remove(index);
 		return bSuccess;
 	}
 

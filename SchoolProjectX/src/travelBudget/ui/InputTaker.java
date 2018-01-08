@@ -98,15 +98,15 @@ public class InputTaker {
 	}
 
 	public String getInputString(String message) throws IOException {
-		System.out.println(message);
-		return br.readLine();
+		return getInputString(message, "");
 	}
+
 	public String getInputString(String message, String defaultValue) throws IOException {
 		System.out.println(message);
-		String m=br.readLine();
-		if(m.isEmpty())
+		String m = br.readLine();
+		if (m.isEmpty())
 			return defaultValue;
-		else 
+		else
 			return m;
 	}
 }

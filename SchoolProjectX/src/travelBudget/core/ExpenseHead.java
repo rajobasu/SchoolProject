@@ -13,10 +13,10 @@ import java.util.LinkedList;
 public class ExpenseHead {
 	public static final int TYPE_BUDGET_HEAD = -1423;
 	public static final int TYPE_ACTUAL_HEAD = -4654;
+	
 	private String headName;
-
-	private ExpenseCategory budgetedAmount;
-	private ExpenseCategory actualAmount;
+	private AmountType budgetedAmount;
+	private AmountType actualAmount;
 
 	/**
 	 * Create a new {@code ExpenseHead} object from the {@code headName} and the
@@ -32,7 +32,7 @@ public class ExpenseHead {
 		super();
 		this.headName = headName;
 
-		budgetedAmount = new ExpenseCategory() {
+		budgetedAmount = new AmountType() {
 			@Override
 			public void updateAmount(int amount) {
 				clear();
@@ -40,7 +40,7 @@ public class ExpenseHead {
 			}
 		};
 
-		actualAmount = new ExpenseCategory();
+		actualAmount = new AmountType();
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class ExpenseHead {
 		// System.out.println(type);
 	}
 
-	public ExpenseCategory getAmountType(int type) {
+	public AmountType getAmountType(int type) {
 		if (type == TYPE_ACTUAL_HEAD)
 			return actualAmount;
 		if (type == TYPE_BUDGET_HEAD)

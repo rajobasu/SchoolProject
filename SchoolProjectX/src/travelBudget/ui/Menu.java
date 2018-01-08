@@ -15,7 +15,7 @@ import travelBudget.core.ExpenseHead;
  */
 public class Menu {
 	private ExpenseManager expense;
-	public final int MENU_EXIT = 9;
+	public static final int MENU_EXIT = 8;
 
 	// private TourDetails tourDetails;
 	/**
@@ -23,7 +23,7 @@ public class Menu {
 	 * the start may cause errors.
 	 */
 	public void init() {
-		expense = new ExpenseManager();
+		expense = ExpenseManager.getInstance();
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class Menu {
 		System.out.println("   5. Add New Head");
 		System.out.println("   6. Remove Head");
 		System.out.println("   7. Enter/Edit Tour Data");
-		
+
 		System.out.println("   9. Exit");
 		System.out.println();
 	}
@@ -87,6 +87,7 @@ public class Menu {
 			}
 
 		});
+
 		int choice = inputTaker.getInputInt("Enter the choice : ");
 
 		switch (choice) {
@@ -112,7 +113,7 @@ public class Menu {
 		case 7:
 			editTour();
 			break;
-			
+
 		case MENU_EXIT:
 			return false;
 
@@ -121,27 +122,24 @@ public class Menu {
 		return true;
 	}
 
-	
-	public void editTour() throws IOException
-	{
+	public void editTour() throws IOException {
 		TourEditor te = new TourEditor();
 		te.update();
 	}
-	
+
 	public void removeExpenseHead() throws IOException {
 		ArrayList<String> headNames = expense.getHeadNames();
 		int i = 1;
-		
+
 		System.out.println("");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Remove Expense Head");
 		System.out.println("==============================================");
 		System.out.println("");
 		System.out.println(" Expense Heads");
-		
-		
+
 		for (String n : headNames) {
-			System.out.println("    "+ i + ". " + n);
+			System.out.println("    " + i + ". " + n);
 			i++;
 		}
 		System.out.println();
@@ -158,7 +156,7 @@ public class Menu {
 			if (expense.removeHead(headNames.get(index - 1))) {
 				System.out.println("Info: Expense Head removed successfully.");
 			} else {
-				System.out.println("Error: Expense Head could not be removed ("+expense.getLastErrorMessage()+").");
+				System.out.println("Error: Expense Head could not be removed (" + expense.getLastErrorMessage() + ").");
 
 			}
 		}
@@ -167,7 +165,7 @@ public class Menu {
 
 	public void addNewExpenseHead() throws IOException {
 		InputTaker inputTaker = new InputTaker();
-		
+
 		System.out.println("");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Add New Expense Head");
@@ -176,11 +174,10 @@ public class Menu {
 
 		String headName = inputTaker.getInputString("   Enter name of new head : ");
 		int initVal = new InputTaker().getInputInt("   Enter initial amount : ", ExpenseManager.DEF_VAL);
-		if(expense.addNewHead(headName, initVal))
-		{
+		if (expense.addNewHead(headName, initVal)) {
 			System.out.println("Info: Expense Head added successfully.");
 		} else {
-			System.out.println("Error: Expense Head could not be added ("+expense.getLastErrorMessage()+").");
+			System.out.println("Error: Expense Head could not be added (" + expense.getLastErrorMessage() + ").");
 
 		}
 

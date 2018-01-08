@@ -1,26 +1,26 @@
 package travelBudget.core;
 
-
 import java.util.LinkedList;
 
-public class ExpenseCategory {
+public class AmountType {
 	private LinkedList<Transaction> transactions;
 
-	public ExpenseCategory() {
+	public AmountType() {
 		transactions = new LinkedList<>();
 	}
 
 	public void updateAmount(int amount) {
-		updateAmount(amount, "");
+		updateAmount(amount, "No Details.");
 	}
 
 	public void updateAmount(int amount, String details) {
-		// System.out.println(" *** AMOUTN TO BE UPDATED : " + amount);
-		transactions.add(new Transaction(amount, details));
+		// System.out.println(" *** AMOUNT TO BE UPDATED : " + amount);
+		// transactions.add(new Transaction(amount, details));
+		updateAmount(new Transaction(amount, details));
 	}
 
 	public void updateAmount(Transaction txn) {
-		// System.out.println(" *** AMOUTN TO BE UPDATED : " + amount);
+		// System.out.println(" *** AMOUNT TO BE UPDATED : " + amount);
 		transactions.add(txn);
 	}
 
@@ -31,9 +31,10 @@ public class ExpenseCategory {
 	public int getAmount() {
 		if (transactions.isEmpty())
 			return ExpenseManager.DEF_VAL;
+
 		int sum = 0;
 		for (Transaction i : transactions) {
-			sum += i.amount;
+			sum += i.getAmount();
 		}
 		return sum;
 	}
