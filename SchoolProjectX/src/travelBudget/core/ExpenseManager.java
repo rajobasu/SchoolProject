@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * This is a general purpose class that stores a set of {@code ExpenseHead}s.
  * This is a singleton class.
  * 
- * @author rajobasu of SLS
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class ExpenseManager {

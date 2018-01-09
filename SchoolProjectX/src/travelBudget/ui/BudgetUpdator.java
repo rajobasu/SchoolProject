@@ -7,7 +7,8 @@ import travelBudget.core.ExpenseManager;
  * Handles a budget update operation. It changes the {@code Expense} that is
  * passed when this object is created.
  * 
- * @author rajob
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class BudgetUpdator {

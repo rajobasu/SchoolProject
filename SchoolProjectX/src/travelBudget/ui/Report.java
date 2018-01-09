@@ -15,7 +15,9 @@ import travelBudget.core.Transaction;
  * {@code ActualExpense} objects. The queries will always reflect the current
  * state of the objects.
  * 
- * @author rajob
+ *
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class Report {
@@ -88,6 +90,7 @@ public class Report {
 			totalActual += val2;
 			System.out.printf(formatString, name, val1, val2, calculatePercentage(val1, val2));
 		}
+
 		System.out.println("-------------------------  --------  --------  ---------");
 		System.out.printf(formatString, "Total", totalBudget, totalActual,
 				calculatePercentage(totalBudget, totalActual));
@@ -125,6 +128,7 @@ public class Report {
 			System.out.println();
 			totalActual += amount;
 		}
+
 		System.out.println("-------------------------  --------  --------  ---------");
 		System.out.printf("%-25s  %8d\n", "Total", totalActual);
 		System.out.println("=========================  ========  ========  =========");

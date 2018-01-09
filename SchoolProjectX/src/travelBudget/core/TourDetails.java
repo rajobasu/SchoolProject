@@ -4,7 +4,8 @@ package travelBudget.core;
  * Encapsulates the tour details of a single tour and contains informations like
  * tourname, tour details etc.
  * 
- * @author rajarshibasu
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  */
 public class TourDetails {
 	private String tourName;

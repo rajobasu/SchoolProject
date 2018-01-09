@@ -9,7 +9,7 @@ import travelBudget.core.ExpenseManager;
  * This class keeps the progam running and process the choices given by the
  * user. This is the central location from which the program is managed.
  * 
- * @author rajob
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
  *
  */
 public class Menu {

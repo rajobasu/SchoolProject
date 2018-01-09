@@ -9,7 +9,8 @@ import travelBudget.core.ExpenseHead;
  * 
  * @see ExpenseHead
  * 
- * @author rajob
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class ExpenseEditor {
@@ -52,14 +53,12 @@ public class ExpenseEditor {
 		int amt = inputTaker.getInputInt(
 				budgetHead.getHeadName() + "   ( Old amount: " + budgetHead.getAmount(type) + " )   New amount: ",
 				budgetHead.getAmount(type));
-		
-		String details= "";
-		if(type== ExpenseHead.TYPE_ACTUAL_HEAD)
-		{
-			details= inputTaker.getInputString("Enter Details");
+
+		String details = "";
+		if (type == ExpenseHead.TYPE_ACTUAL_HEAD) {
+			details = inputTaker.getInputString("Enter Details");
 			budgetHead.updateAmount(amt, details, type);
-		}
-		else 
+		} else
 			budgetHead.updateAmount(amt, type);
 	}
 }

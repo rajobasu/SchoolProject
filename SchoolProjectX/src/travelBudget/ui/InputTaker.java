@@ -9,7 +9,9 @@ import java.io.InputStreamReader;
  * is also validated depending on the {@code Validator}s that have been passed
  * to it.
  * 
- * @author rajob
+ * 
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class InputTaker {
@@ -105,7 +107,7 @@ public class InputTaker {
 	 * printed prior to prompting the user for input. In case of wrong input, if
 	 * so judged by any of the provided {@code Validator}s, a error message as
 	 * prescribed by that {@code Validator} is shown and the user is prompted
-	 * again. 
+	 * again.
 	 * 
 	 * @see Validator
 	 * 

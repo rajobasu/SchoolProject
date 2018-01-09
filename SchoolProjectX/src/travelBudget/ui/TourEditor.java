@@ -5,7 +5,9 @@ import travelBudget.core.ExpenseManager;
 /**
  * This class encapsulates an update operation on the tour details of a trip.
  * 
- * @author rajarshibasu
+ * 
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class TourEditor {

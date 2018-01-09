@@ -4,7 +4,9 @@ package travelBudget.ui;
  * This is a class that is used to validate a input from the user, but can be
  * used as a general purpose integer validator also.
  * 
- * @author rajob
+ * 
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public abstract class Validator {

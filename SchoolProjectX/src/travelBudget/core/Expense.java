@@ -5,7 +5,8 @@ import java.util.LinkedList;
 /**
  * Stores all the {@code Transaction}s
  * 
- * @author rajarshibasu
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 public class Expense {

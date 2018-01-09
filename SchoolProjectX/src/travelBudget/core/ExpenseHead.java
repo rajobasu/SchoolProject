@@ -7,7 +7,8 @@ import java.util.LinkedList;
  * Head. It stores primarily 2 informations, the head name and the expenditure
  * under that head name.
  * 
- * @author rajob
+ * @author Rajarshi Basu, Samaroha Ghosh class - X B.
+ *
  *
  */
 
