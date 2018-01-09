@@ -12,6 +12,7 @@ import travelBudget.core.ExpenseManager;
  * @author Rajarshi Basu, Samaroha Ghosh class - X B.
  *
  */
+
 public class Menu {
 	private ExpenseManager expense;
 	public static final int MENU_EXIT = 8;
