@@ -121,11 +121,18 @@ public class Menu {
 		return true;
 	}
 
+	/**
+	 * Edits the tour details. Uses the {@code TourEditor} class for the same.
+	 */
 	public void editTour() {
 		TourEditor te = new TourEditor();
 		te.update();
 	}
 
+	/**
+	 * Takes input from the user and removes the corresponding
+	 * {@code ExpenseHead}
+	 */
 	public void removeExpenseHead() {
 		ArrayList<String> headNames = expense.getHeadNames();
 		int i = 1;
@@ -162,6 +169,9 @@ public class Menu {
 
 	}
 
+	/**
+	 * Adds a new {@code ExpenseHead}
+	 */
 	public void addNewExpenseHead() {
 		InputTaker inputTaker = new InputTaker();
 

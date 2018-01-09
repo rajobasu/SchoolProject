@@ -59,8 +59,8 @@ public class Report {
 	 * This method, when called, shows the budgeted expense, actual expense and
 	 * the percentage of increase or decrease on all the budget heads. This can
 	 * be called multiple times on the same object and the output will change
-	 * depending on the state of the paramaters ( that had been passed to this
-	 * object at the time of creation ) at the time of invokation.
+	 * depending on the state of the parameters ( that had been passed to this
+	 * object at the time of creation ) at the time of invocation.
 	 */
 	public void showTabular() {
 		int totalBudget = 0;
@@ -97,7 +97,8 @@ public class Report {
 	}
 
 	/**
-	 * transaction
+	 * Show all the actual {@code Transaction}s within all the
+	 * {@code ExpenseHead}s
 	 * 
 	 * @throws IOException
 	 */
@@ -105,21 +106,10 @@ public class Report {
 		InputTaker taker = new InputTaker();
 		int totalActual = 0;
 		System.out.println("");
-		// System.out.println("----------------------------------------------");
 		System.out.println("==============================================");
 		System.out.println(" Travel Budget System : Actual Expense Report");
 		System.out.println("==============================================");
 		System.out.println();
-
-		// System.out.printf("%-25s %-8s \n", "Head", " Amount");
-		// System.out.printf("%-25s %-8s \n", "-------------------------",
-		// "--------");
-
-		// System.out.println("****************************************************");
-		// String formatString = "%-25s %8d %-50s\n";
-		// System.out.printf("%-25s Actual Exp Details \n", "Head");
-		// System.out.println("------------------------- -------- --------
-		// --------- ");
 		System.out.println("Head                         Amount  Details ");
 		System.out.println("-------------------------  --------  --------------------");
 

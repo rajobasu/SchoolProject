@@ -23,6 +23,9 @@ public class BudgetUpdator {
 		this.type = type;
 	}
 
+	/**
+	 * Prints the heading corresponding to the {@code type}
+	 */
 	protected void printHeading() {
 		if (type == ExpenseHead.TYPE_BUDGET_HEAD) {
 			// System.out.println("\f");
@@ -44,6 +47,10 @@ public class BudgetUpdator {
 
 	}
 
+	/**
+	 * Show all the {@code ExpenseHead}s and their respective amounts Also show
+	 * the total amount.
+	 */
 	public void showExpenseHeads() {
 		printHeading();
 
@@ -61,6 +68,12 @@ public class BudgetUpdator {
 
 	}
 
+	/**
+	 * Take the choice from the user and update the required
+	 * {@code ExpenseHead}.
+	 * 
+	 * @return - whether or not to exit.
+	 */
 	public boolean executeUserChoice() {
 		InputTaker inputTaker = new InputTaker(new Validator() {
 			@Override

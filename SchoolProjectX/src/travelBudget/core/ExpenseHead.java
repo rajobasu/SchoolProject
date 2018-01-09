@@ -82,6 +82,13 @@ public class ExpenseHead {
 		actualAmount.updateAmount(amount, details);
 	}
 
+	/**
+	 * Calculates the required amount.
+	 * 
+	 * @param type
+	 *            - Whether the required amount is of budget and actual.
+	 * @return - the amount
+	 */
 	public int getAmount(int type) {
 		if (type == TYPE_BUDGET_HEAD)
 			return getBudgetedAmount();
@@ -96,12 +103,28 @@ public class ExpenseHead {
 		updateAmount(amount, "", type);
 	}
 
+	/**
+	 * Update the amount corresponding to the {@code type}.
+	 * 
+	 * @param amount
+	 *            - The amount to update
+	 * @param details
+	 *            - The details of the transaction.
+	 * @param type
+	 *            - The type of {@code Expense} to update.
+	 */
 	public void updateAmount(int amount, String details, int type) {
 		if (type == TYPE_ACTUAL_HEAD)
 			updateActualAmount(amount, details);
 		if (type == TYPE_BUDGET_HEAD)
 			updateBudgetedAmount(amount);
 	}
+
+	/**
+	 * 
+	 * @param type
+	 * @return - {@code Expense} corresponding to the given {@code type}.
+	 */
 
 	public Expense getAmountType(int type) {
 		if (type == TYPE_ACTUAL_HEAD)

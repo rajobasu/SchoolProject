@@ -43,10 +43,12 @@ public class InputTaker {
 	 * printed prior to prompting the user for input. In case of wrong input, if
 	 * so judged by any of the provided {@code Validator}s, a error message as
 	 * prescribed by that {@code Validator} is shown and the user is prompted
-	 * again.
+	 * again. When a <|Enter|>is pressed, the {@code defValue} is given back.
 	 * 
 	 * @see Validator
 	 * 
+	 * @param defValue
+	 *            - The default value to be returned in case no input is given.
 	 * @param inputMessage
 	 *            - The message that is shown to the user before prompting for
 	 *            input.
@@ -96,6 +98,27 @@ public class InputTaker {
 		return n;
 	}
 
+	/**
+	 * This method returns a integer taken as input, which is validated against
+	 * all of the {@code Validator}s with which the object on which this method
+	 * was invoked on, was created. Also, a inputMessage is also taken which is
+	 * printed prior to prompting the user for input. In case of wrong input, if
+	 * so judged by any of the provided {@code Validator}s, a error message as
+	 * prescribed by that {@code Validator} is shown and the user is prompted
+	 * again. 
+	 * 
+	 * @see Validator
+	 * 
+	 * @param inputMessage
+	 *            - The message that is shown to the user before prompting for
+	 *            input.
+	 * @return - The integer which is taken from the user, after checking for
+	 *         all validations.
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 * 
+	 * 
+	 */
 	public int getInputInt(String inputMessage) {
 		return getInputInt(inputMessage, NO_DEFAULT_VAL);
 	}

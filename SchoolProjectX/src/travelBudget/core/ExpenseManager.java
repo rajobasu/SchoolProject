@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This is a general purpose class that stores a set of {@code ExpenseHead}s.
+ * This is a singleton class.
  * 
  * @author rajobasu of SLS
  *
@@ -20,7 +21,8 @@ public class ExpenseManager {
 
 	/**
 	 * Create a new Expense object and create a set of {@code ExpenseHead}s for
-	 * all the heads, along with a default value for them.
+	 * all the heads, along with a default value for them. It is marked private
+	 * as the class is a singleton class.
 	 */
 	private ExpenseManager() {
 		expenseHeads = new ArrayList<>();
@@ -87,6 +89,15 @@ public class ExpenseManager {
 
 	}
 
+	/**
+	 * Add a new {@code ExpenseHead} to the current list of heads.
+	 * 
+	 * @param s
+	 *            - The name of the {@code ExpenseHeads}
+	 * @param value
+	 *            - The initial value of the head.
+	 * @return - Whether the addition was successful or not.
+	 */
 	public boolean addNewHead(String s, int value) {
 		if (headNames.contains(s)) {
 			setErrorMessage("Expense Head Name already exists");
@@ -104,6 +115,13 @@ public class ExpenseManager {
 		return removeExpenseHead(s);
 	}
 
+	/**
+	 * Removes the required {@code ExpenseHead} from the list of heads.
+	 * 
+	 * @param s
+	 *            - Name of the {@code ExpenseHead} to remove.
+	 * @return - Whether the removal of the {@code ExpenseHead} was successful.
+	 */
 	public boolean removeExpenseHead(String s) {
 		int index = 0;
 		boolean bSuccess = false;
@@ -132,6 +150,11 @@ public class ExpenseManager {
 		return false;
 	}
 
+	/**
+	 * Manages access to this class's object by making it a singleton class.
+	 * 
+	 * @return - An instance of {@code ExpenseManager} class.
+	 */
 	public static ExpenseManager getInstance() {
 		if (INSTANCE == null)
 			INSTANCE = new ExpenseManager();

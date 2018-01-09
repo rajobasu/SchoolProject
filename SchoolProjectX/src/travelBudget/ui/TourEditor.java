@@ -2,7 +2,17 @@ package travelBudget.ui;
 
 import travelBudget.core.ExpenseManager;
 
+/**
+ * This class encapsulates an update operation on the tour details of a trip.
+ * 
+ * @author rajarshibasu
+ *
+ */
 public class TourEditor {
+
+	/**
+	 * updates the existing tour details by taking input from the user.
+	 */
 	public void update() {
 		InputTaker it = new InputTaker();
 
