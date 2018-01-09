@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Expense {
 	private LinkedList<Transaction> transactions;
 
-	public Expense() {
+	Expense() {
 		transactions = new LinkedList<>();
 	}
 

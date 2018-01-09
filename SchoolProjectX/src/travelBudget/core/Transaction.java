@@ -4,7 +4,7 @@ public class Transaction {
 	private int amount;
 	private String details;
 
-	public Transaction(int amount, String details) {
+	Transaction(int amount, String details) {
 		super();
 		this.amount = amount;
 		this.details = details;

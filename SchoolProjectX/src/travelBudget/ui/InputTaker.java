@@ -89,6 +89,7 @@ public class InputTaker {
 				exit = false;
 			} catch (IOException e) {
 				e.printStackTrace();
+				return 0;
 			}
 
 		} while (!exit);

@@ -29,7 +29,7 @@ public class ExpenseHead {
 	 * @param amount
 	 *            - The amount spent under that head.
 	 */
-	public ExpenseHead(String headName) {
+	ExpenseHead(String headName) {
 
 		this.headName = headName;
 
